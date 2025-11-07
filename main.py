@@ -4,7 +4,6 @@ import sqlite3 as sq
 import configparser
 import pyimgur
 import time
-client_id = '1a181eedd6e9b13'
 
 im = pyimgur.Imgur(client_id)
 
@@ -15,10 +14,10 @@ bot = telebot.TeleBot(config["Telegram"]["telegram_bot_token"])
 
 admin_id = config["Telegram"]["admin_id"]
 
-info_msg = '''BIJIS - молодой и развивающийся магазин уличной обуви, основанный в 2021 году, который тесно сотрудничает с проверенными поставщиками. Наша команда собралась представить вам качественную и комфортную обувь по довольно разумной цене среди других популярных магазинов.
+info_msg = '''***** - молодой и развивающийся магазин уличной обуви, основанный в 2021 году, который тесно сотрудничает с проверенными поставщиками. Наша команда собралась представить вам качественную и комфортную обувь по довольно разумной цене среди других популярных магазинов.
 
 Мы хотим сделать наше детище одним из крупнейших интернет-магазинов в России. Просто попробуйте надеть наши кроссовки и вы всё поймете сами. '''
-start_msg = 'СТАРТОВОЕ СООБЩЕНИЕ'
+start_msg = 'Добро пожаловать!'
 brand_select_msg = 'Выберите бренд'
 
 welcome_menu = types.InlineKeyboardMarkup(row_width=2)
@@ -70,8 +69,6 @@ while True:
                             bot.edit_message_text(chat_id=message.message.chat.id, message_id=message.message.id,
                                                   text='Терминал',
                                                   reply_markup=terminal_menu)
-                        else:
-                            bot.send_message(message.message.chat.id, 'Ты как, блять, вообще сюда залез?')
 
             @bot.message_handler(commands=['start'])
             def start(message):
@@ -415,7 +412,7 @@ air max skepta,38 39 43 45,6800''')
                     ch_brand_b = types.InlineKeyboardButton('Брэнд', callback_data=f'ch_brand,{productd[0][0]}')
                     ch_model_b = types.InlineKeyboardButton('Модель', callback_data=f'ch_model,{productd[0][0]}')
                     ch_size = types.InlineKeyboardButton('Размеры', callback_data=f'ch_size,{productd[0][0]}')
-                    ch_price_b = types.InlineKeyboardButton('Цену', callback_data=f'ch_price,{productd[0][0]}')
+                    ch_price_b = types.InlineKeyboardButton('Цена', callback_data=f'ch_price,{productd[0][0]}')
                     ch_photo = types.InlineKeyboardButton('Фото', callback_data=f'ch_photo,{productd[0][0]}')
                     red_product_menu.add(ch_brand_b, ch_model_b, ch_size, ch_price_b, ch_photo)
                     bot.edit_message_text(chat_id=message.chat.id, message_id=msg6.id,
@@ -507,15 +504,3 @@ air max skepta,38 39 43 45,6800''')
     except Exception:
         continue
         print('Ч-то пошло не так')
-
-
-
-
-
-
-
-
-        # except Exception:
-        #     print("Произошёл неопознаный пиздец")
-        #     continue
-
